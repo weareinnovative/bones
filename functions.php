@@ -81,10 +81,10 @@ function bones_custom_image_sizes( $sizes ) {
 }
 
 /*
-The function above adds the ability to use the dropdown menu to select 
-the new images sizes you have just created from within the media manager 
-when you add media to your content blocks. If you add more image sizes, 
-duplicate one of the lines in the array and name it according to your 
+The function above adds the ability to use the dropdown menu to select
+the new images sizes you have just created from within the media manager
+when you add media to your content blocks. If you add more image sizes,
+duplicate one of the lines in the array and name it according to your
 new image size.
 */
 
@@ -168,7 +168,6 @@ function bones_comments( $comment, $args, $depth ) {
 } // don't remove this bracket!
 
 /************* SEARCH FORM LAYOUT *****************/
-
 // Search Form
 function bones_wpsearch($form) {
 	$form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
@@ -178,6 +177,149 @@ function bones_wpsearch($form) {
 	</form>';
 	return $form;
 } // don't remove this bracket!
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////
+// TINYMCE: FIRST LINE TOOLBAR CUSTOMIZATIONS //
+////////////////////////////////////////////////
+if( !function_exists('base_extended_editor_mce_buttons') ){
+    function base_extended_editor_mce_buttons($buttons) {
+        // The settings are returned in this array. Customize to suite your needs.
+        return array(
+            'bold', 'italic', 'blockquote', 'separator', 'bullist', 'numlist', 'separator', 'sub', 'sup', 'separator', 'link', 'unlink', 'separator', 'outdent', 'indent'
+        );
+        /* WordPress Default
+        return array(
+            'bold', 'italic', 'strikethrough', 'separator',
+            'bullist', 'numlist', 'blockquote', 'separator',
+            'justifyleft', 'justifycenter', 'justifyright', 'separator',
+            'link', 'unlink', 'wp_more', 'separator',
+            'spellchecker', 'fullscreen', 'wp_adv'
+        ); */
+    }
+    add_filter("mce_buttons", "base_extended_editor_mce_buttons", 0);
+}
+
+/////////////////////////////////////////////////
+// TINYMCE: SECOND LINE TOOLBAR CUSTOMIZATIONS //
+/////////////////////////////////////////////////
+if( !function_exists('base_extended_editor_mce_buttons_2') ){
+    function base_extended_editor_mce_buttons_2($buttons) {
+        // The settings are returned in this array. Customize to suite your needs. An empty array is used here because I remove the second row of icons.
+        return array(
+            'formatselect', 'separator', 'charmap', 'fullscreen', 'separator', 'undo', 'redo', 'separator', 'wp_help'
+        );
+    }
+    add_filter("mce_buttons_2", "base_extended_editor_mce_buttons_2", 0);
+}
+
+
+/////////////////////////////////////////
+// CUSTOMIZE THE FORMAT DROPDOWN ITEMS //
+/////////////////////////////////////////
+if( !function_exists('base_custom_mce_format') ){
+	function base_custom_mce_format($init) {
+		// Add block format elements you want to show in dropdown
+		$init['theme_advanced_blockformats'] = 'p,h2,h3,h4,h5,h6';
+		// Add elements not included in standard tinyMCE dropdown p,h1,h2,h3,h4,h5,h6
+		//$init['extended_valid_elements'] = 'code[*]';
+		return $init;
+	}
+	add_filter('tiny_mce_before_init', 'base_custom_mce_format' );
+}0
+
+
+///////////////////////////////////////////////
+// PARENT AND CHILD PAGE PASSWORD PROTECTION //
+///////////////////////////////////////////////
+// function has_protected_parents ( $post ) {
+// 	foreach ( get_post_ancestors($post) as $parent ) {
+// 		if ( post_password_required( $parent ) ) {
+// 			return true;
+// 		}
+// 	}
+// 	return false;
+// }
+
+
+////////////////////////////////
+// TRIM LENGTH OF EXCERPT     //
+// Change $excerpt_word_count //
+////////////////////////////////
+// function custom_wp_trim_excerpt($text) {
+// $raw_excerpt = $text;
+// if ( '' == $text ) {
+//     //Retrieve the post content.
+//     $text = get_the_content('');
+
+//     //Delete all shortcode tags from the content.
+//     $text = strip_shortcodes( $text );
+
+//     $text = apply_filters('the_content', $text);
+//     $text = str_replace(']]>', ']]&gt;', $text);
+
+//     $allowed_tags = '<a>'; /*** MODIFY THIS. Add the allowed HTML tags separated by a comma.***/
+//     $text = strip_tags($text, $allowed_tags);
+
+//     $excerpt_word_count = 55; /*** MODIFY THIS. change the excerpt word count to any integer you like.***/
+//     $excerpt_length = apply_filters('excerpt_length', $excerpt_word_count);
+
+//     $excerpt_end = '[...]'; /*** MODIFY THIS. change the excerpt endind to something else.***/
+//     $excerpt_more = apply_filters('excerpt_more', ' ' . $excerpt_end);
+
+//     $words = preg_split("/[\n\r\t ]+/", $text, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY);
+//     if ( count($words) > $excerpt_length ) {
+//         array_pop($words);
+//         $text = implode(' ', $words);
+//         $text = $text . $excerpt_more;
+//     } else {
+//         $text = implode(' ', $words);
+//     }
+// }
+// return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);
+// }
+// remove_filter('get_the_excerpt', 'wp_trim_excerpt');
+// add_filter('get_the_excerpt', 'custom_wp_trim_excerpt');
+
+
+///////////////////////////////////
+// REMOVE P TAG FROM AROUND IMGS //
+// ----------------------------- //
+// Not sure if this still works? //
+///////////////////////////////////
+// function filter_ptags_on_images($content){
+//    return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
+// }
+// add_filter('the_content', 'filter_ptags_on_images');
+
+
+///////////////////////////////
+//  CUSTOM DASHBOARD WIDGET  //
+///////////////////////////////
+// function say_what_up(){
+// 	echo 'Having problems with WordPress, or just not sure where to go to add/remove something from the website? Click <a href="mailto:design@weareinnovative.ca?subject=PROJECT NAME Website Problem">here</a> to send an email to <a href="mailto:design@weareinnovative.ca?subject=PROJECT NAME Website Problem">Innovative Media + Marketing</a>, and we will get back to you as soon as possible!';
+// }
+// function register_widgets(){
+// 	wp_add_dashboard_widget('our-css-id','Having Troubles?','say_what_up');
+// }
+// add_action('wp_dashboard_setup','register_widgets');
+
+
+////////////////////////////////
+//  CUSTOM ADMIN FOOTER TEXT  //
+////////////////////////////////
+// function remove_footer_admin () {
+// 	echo 'Having problems with WordPress, or just not sure where to go to add/remove something from the website? Click <a href="mailto:design@weareinnovative.ca?subject=PROJECT NAME Website Problem">here</a> to send an email to <a href="design@weareinnovative.ca.com?subject=PROJECT NAME Website Problem">Innovative Media + Marketing</a>, and we will get back to you as soon as possible!';
+// }
+// add_filter('admin_footer_text', 'remove_footer_admin');
+
+
 
 
 ?>

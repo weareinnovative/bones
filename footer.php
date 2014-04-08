@@ -2,11 +2,11 @@
 
 				<div id="inner-footer" class="wrap clearfix">
 
-					<nav role="navigation">
-							<?php bones_footer_links(); ?>
-					</nav>
+					<?php /* <nav role="navigation">
+						<?php bones_footer_links(); ?>
+					</nav> */ ?>
 
-					<p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>.</p>
+					<p class="source-org copyright">All Content &copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>.</p>
 
 				</div>
 
@@ -14,7 +14,6 @@
 
 		</div>
 
-		<?php // all js scripts are loaded in library/bones.php ?>
 		<?php wp_footer(); ?>
 
 	</body>

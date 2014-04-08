@@ -1,0 +1,219 @@
+@import "compass"
+
+
+
+
+
+//////////////
+// CONTENTS //
+//////////////
+
+// Search for sections (Ex. NAVIGATION) by adding a $ character before. (Ex. $NAVIGATION)
+// We use the $ character as it's not vary common in your actual CSS code.
+
+// REUSABLE            Commonly reused rules across many different elements
+// MIXINS              Commonly used custom mixins for various elements of the site
+
+// GENERAL             Styling of pre-defined elements (body, a, blockquote, UL, etc.)
+// FOOTER              The main footer area
+// GRAVITY FORMS       Form styling
+// HEADER              Styling of header elements (Logo, navigation, etc.)
+// NAVIGATION          Main navigation (Right of logo, below Retailer Connection button)
+// PAGE SPECIFIC       Styling specific to a certain page if need be
+// SHOWCASE            The section between the header and beginning of the main content area
+// SIDEBAR             The sites sidebar
+// TYPOGRAPHY          Styling of various sections of text used throughout the site
+
+
+
+
+
+//////////////////////////////////
+// $REUSABLE
+//////////////////////////////////
+// Colors
+$blue: #1068a7
+$blue-light: #0baffa
+$grey: #9e9e9e
+$grey-dark: #7d7d7d
+$grey-light: #ebebeb
+$grey-text: #656565
+
+// Other
+.alignleft
+    float: left
+    margin: 5px 20px 20px 0 !important
+.alignright
+    float: right
+    margin: 5px 0 20px 20px !important
+.clear
+    clear: both
+.mobile
+    display: none
+.left
+    float: left !important
+.right
+    float: right !important
+// .sprite
+    // background:
+    //  image: url(../images/sprite.png)
+    //  repeat: no-repeat
+
+
+
+
+
+/////////////
+// $MIXINS //
+/////////////
+@mixin aa
+    -moz-osx-font-smoothing: grayscale
+    -webkit-font-smoothing: antialiased
+@mixin em($value, $base: 16)
+    size: $value + px
+    size: $value / $base + em
+@mixin rem($value, $base: 16)
+    size: $value + px
+    size: $value / $base + rem
+@mixin helvetica
+    family: Helvetica, Arial, sans-serif
+
+
+
+
+
+//////////////////////////////////
+// $GENERAL
+//////////////////////////////////
+a
+a:hover
+body
+    @include hyphens(none !important)
+table
+    margin: 0 0 1.5em
+    @media (max-width: 767px)
+        display: block
+        max-width: 100%
+        overflow: scroll
+.wrap
+    max-width: 960px
+    width: 100%
+
+
+
+
+
+//////////////////////////////////
+// $FOOTER
+//////////////////////////////////
+
+
+
+
+
+//////////////////////////////////
+// $GRAVITY FORMS
+//////////////////////////////////
+
+
+
+
+
+//////////////////////////////////
+// $HEADER
+//////////////////////////////////
+
+
+
+
+
+//////////////////////////////////
+// $NAVIGATION
+//////////////////////////////////
+
+
+
+
+
+//////////////////////////////////
+// $PAGE SPECIFIC
+//////////////////////////////////
+
+
+
+
+
+//////////////////////////////////
+// $SHOWCASE
+//////////////////////////////////
+
+
+
+
+
+//////////////////////////////////
+// $SIDEBAR
+//////////////////////////////////
+
+
+
+
+
+//////////////////////////////////
+// $TYPOGRAPHY
+//////////////////////////////////
+blockquote
+    border-left: 5px solid #333
+    margin: 1.000em 0 1.500em !important
+    padding: 0 0 0 20px
+    p
+        font:
+            +rem(20)
+            style: italic
+            weight: 600
+        line-height: 1.400em
+        margin: 0 !important
+        text-align: left
+h5, .h5
+    border-top: 1px solid #DDD
+    color: #333
+    font:
+        family: Helvetica, Arial, sans-serif
+        +rem(12)
+        weight: bold
+    letter-spacing: 0px
+    line-height: 1.4em
+    margin: 0 0 20px
+    padding-top: 20px
+    text-transform: none
+h6, .h6
+    color: #333
+    font:
+        family: Helvetica, Arial, sans-serif
+        +rem(12)
+        style: italic
+        weight: normal
+    line-height: 16px
+    margin: 0 0 20px
+p
+    margin: 0 0 1.400em
+    @include hyphens(none !important)
+#main
+    ol
+        margin: 1.00em 0 1.00em 3.500em
+        li
+            list-style-type: decimal
+        ol
+            margin: 0.250em 0 0.250em 2.125em
+    ul
+        margin: 1.00em 0 1.00em 3.500em
+        li
+            list-style-type: square
+        ul
+            margin: 0.250em 0 0.250em 2.125em
+
+
+
+
+
+@import "default"
